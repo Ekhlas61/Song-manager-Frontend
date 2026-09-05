@@ -10,7 +10,15 @@ export default function App() {
     <Provider store={store}>
       <GlobalStyles />
       <Layout />
-      <ToastContainer position="bottom-right" theme="dark" />
+      <ToastContainer
+        position="top-right"
+        theme="dark"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover
+        newestOnTop
+        limit={1}
+      />
     </Provider>
   );
 }

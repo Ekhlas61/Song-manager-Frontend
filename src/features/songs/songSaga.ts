@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import {
   createSongFailure,
   createSongRequest,
@@ -40,6 +41,7 @@ function* createSongSaga(action: ReturnType<typeof createSongRequest>) {
     const song: Awaited<ReturnType<typeof api.createSong>> = yield call(api.createSong, action.payload);
     yield put(createSongSuccess(song));
     yield put(fetchStatsRequest());
+    toast.success('Song added successfully!');
   } catch (error: unknown) {
     yield put(createSongFailure(getErrorMessage(error)));
   }
@@ -51,6 +53,7 @@ function* updateSongSaga(action: ReturnType<typeof updateSongRequest>) {
     const song: Awaited<ReturnType<typeof api.updateSong>> = yield call(api.updateSong, id, data);
     yield put(updateSongSuccess(song));
     yield put(fetchStatsRequest());
+    toast.success('Song updated successfully!');
   } catch (error: unknown) {
     yield put(updateSongFailure(getErrorMessage(error)));
   }
@@ -61,6 +64,7 @@ function* deleteSongSaga(action: ReturnType<typeof deleteSongRequest>) {
     yield call(api.deleteSong, action.payload);
     yield put(deleteSongSuccess(action.payload));
     yield put(fetchStatsRequest());
+    toast.success('Song deleted successfully!');
   } catch (error: unknown) {
     yield put(deleteSongFailure(getErrorMessage(error)));
   }

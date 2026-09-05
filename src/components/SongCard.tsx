@@ -30,11 +30,15 @@ const Card = styled.article({
 const Header = styled.div({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-start',
-  flexWrap: 'wrap',
-  position: 'relative',
-  zIndex: 1,
-  gap: '0.8rem',
+  justifyContent: 'space-between',
+  gap: '0.75rem',
+});
+
+const BadgeRow = styled.div({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '0.75rem',
 });
 
 const MusicIcon = styled.span({
@@ -52,7 +56,6 @@ const MusicIcon = styled.span({
 
 const TitleWrap = styled.div({
   minWidth: 0,
-  flex: '1 1 130px',
 });
 
 const Eyebrow = styled.span({
@@ -69,7 +72,6 @@ const HeaderGroup = styled.div({
   display: 'flex',
   alignItems: 'center',
   minWidth: 0,
-  flex: 1,
 });
 
 const Title = styled.h3({
@@ -155,15 +157,18 @@ const Button = styled.button<{ variant: 'secondary' | 'danger' }>(({ variant }) 
 
 const SongCard = ({ song, onEdit, onDelete }: SongCardProps) => (
   <Card>
+    <BadgeRow>
+      <MusicIcon aria-hidden="true"><FiMusic size={21} /></MusicIcon>
+      <GenreTag title={song.genre}>{song.genre}</GenreTag>
+    </BadgeRow>
+
     <Header>
       <HeaderGroup>
-        <MusicIcon aria-hidden="true"><FiMusic size={21} /></MusicIcon>
         <TitleWrap>
           <Eyebrow>Now in your library</Eyebrow>
           <Title>{song.title}</Title>
         </TitleWrap>
       </HeaderGroup>
-      <GenreTag title={song.genre}>{song.genre}</GenreTag>
     </Header>
 
     <DetailList>
