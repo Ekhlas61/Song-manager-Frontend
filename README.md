@@ -1,75 +1,250 @@
-# React + TypeScript + Vite
+# 🎵 Song Manager — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive music management interface built with **React, TypeScript, Redux Toolkit, Redux-Saga, Emotion, and Styled System**.
 
-Currently, two official plugins are available:
+The application allows users to manage songs, search and filter their music library, view statistics, and perform CRUD operations through a RESTful backend API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Application
 
-## React Compiler
+**Live Demo:**
+https://magical-moxie-e947d6.netlify.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Repository
 
-## Expanding the ESLint configuration
+**Frontend Repository:**
+https://github.com/Ekhlas61/Song-manager-Frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Backend Repository:**
+https://github.com/Ekhlas61/song-manager-backend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ✨ Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🎶 Song Management
 
+* View all songs in the music library
+* Add new songs
+* Edit existing songs
+* Delete songs with confirmation
+* Display success messages after successful operations
+* Automatically update the UI after CRUD operations without requiring a page reload
+
+### 🔎 Search & Filtering
+
+* Search songs by title, artist, or album
+* Filter songs by genre
+* Filter songs by artist
+* Filter songs by album
+
+### 📊 Statistics
+
+The application provides an overview of the music collection, including:
+
+* Total number of songs
+* Total number of artists
+* Total number of albums
+* Total number of genres
+* Songs grouped by genre
+* Songs and albums grouped by artist
+* Songs grouped by album
+
+### 🎨 User Interface
+
+* Responsive design
+* Modern music-themed interface
+* Responsive song cards
+* Interactive buttons and controls
+* Add/Edit form
+* Confirmation dialog for destructive actions
+* Non-blocking success notifications
+* Responsive layout for different screen sizes
+
+---
+
+## 🛠️ Technologies
+
+### Frontend
+
+* **React**
+* **TypeScript**
+* **Vite**
+* **Redux Toolkit**
+* **Redux-Saga**
+* **Axios**
+* **Emotion**
+* **Styled System**
+
+### Backend Integration
+
+The frontend communicates with the backend through RESTful APIs.
+
+Backend API:
+
+`https://song-manager-backend-2.onrender.com`
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── api/
+│   └── songApi.ts
+│
+├── components/
+│   ├── FilterBar.tsx
+│   ├── Layout.tsx
+│   ├── Loading.tsx
+│   ├── SongCard.tsx
+│   ├── SongForm.tsx
+│   ├── SongList.tsx
+│   └── Statistics.tsx
+│
+├── features/
+│   └── songs/
+│       ├── songSaga.ts
+│       ├── songSlice.ts
+│       └── types.ts
+│
+├── store/
+│   └── index.ts
+│
+├── styles/
+│   ├── GlobalStyles.tsx
+│   └── theme.ts
+│
+├── App.tsx
+├── App.css
+├── index.css
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/Ekhlas61/Song-manager-Frontend.git
 ```
+
+### 2. Navigate to the project
+
+```bash
+cd Song-manager-Frontend
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure the API URL
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_URL=https://song-manager-backend-2.onrender.com/api/songs
+```
+
+### 5. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will be available at the local Vite development URL.
+
+---
+
+## 🏗️ Production Build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## 🔄 Application Flow
+
+```text
+User
+ │
+ ▼
+React UI
+ │
+ ▼
+Redux Toolkit
+ │
+ ▼
+Redux-Saga
+ │
+ ▼
+Axios API Layer
+ │
+ ▼
+REST API
+ │
+ ▼
+Node.js / Express Backend
+ │
+ ▼
+MongoDB
+```
+
+---
+
+## 🔐 API Integration
+
+The frontend uses the backend REST API for all song operations.
+
+### Main endpoints
+
+```text
+GET    /api/songs
+GET    /api/songs/:id
+POST   /api/songs
+PUT    /api/songs/:id
+DELETE /api/songs/:id
+GET    /api/songs/stats
+```
+
+---
+
+## 📱 Responsive Design
+
+The interface is designed to work across:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile devices
+
+---
+
+## 🌐 Deployment
+
+The frontend is deployed using **Netlify**.
+
+**Live Application:**
+https://magical-moxie-e947d6.netlify.app/
+
+---
+
+## 👨‍💻 Author
+
+**Ekhlas Abdulmelik**
+
+GitHub:
+https://github.com/Ekhlas61
