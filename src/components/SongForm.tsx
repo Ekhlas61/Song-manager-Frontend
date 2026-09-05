@@ -75,6 +75,11 @@ const SubmitButton = styled.button({
   color: '#f8fafc',
   fontWeight: 700,
   padding: '0.85rem 1.1rem',
+  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  '&:hover': {
+    transform: 'translateY(-1px)',
+    boxShadow: '0 8px 18px rgba(99, 102, 241, 0.28)',
+  },
 });
 
 const CancelButton = styled.button({
@@ -172,7 +177,7 @@ const SongForm = ({
       </FieldGroup>
 
       <Actions>
-        <SubmitButton type="submit">{isEditing ? 'Save changes' : 'Add song'}</SubmitButton>
+        <SubmitButton type="submit">{isEditing ? 'Update Song' : 'Add Song'}</SubmitButton>
         {isEditing && onCancel ? (
           <CancelButton type="button" onClick={onCancel}>
             Cancel

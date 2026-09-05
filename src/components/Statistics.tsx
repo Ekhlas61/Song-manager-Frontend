@@ -56,6 +56,15 @@ const Panel = styled.div({
   gap: '0.8rem',
 });
 
+const DetailGrid = styled.div({
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gap: '1rem',
+  '@media (min-width: 768px)': {
+    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+  },
+});
+
 const List = styled.ul({
   listStyle: 'none',
   display: 'flex',
@@ -73,6 +82,14 @@ const ListItem = styled.li({
   padding: '0.5rem 0.6rem',
   borderRadius: '10px',
   background: 'rgba(30, 41, 59, 0.7)',
+  overflowWrap: 'anywhere',
+  '& > span': {
+    minWidth: 0,
+  },
+  '& > strong': {
+    flexShrink: 0,
+    textAlign: 'right',
+  },
 });
 
 const EmptyPanel = styled.div({
@@ -110,29 +127,39 @@ const Statistics = ({ stats }: StatisticsProps) => {
         ))}
       </OverviewGrid>
 
-      <Panel>
-        <h3>Top genres</h3>
-        <List>
-          {stats.songsPerGenre.map((genre) => (
-            <ListItem key={genre._id}>
-              <span>{genre._id}</span>
-              <strong>{genre.count}</strong>
-            </ListItem>
-          ))}
-        </List>
-      </Panel>
+      <DetailGrid>
+        <Panel>
+          <h3>Songs by Genre</h3>
+          <List>
+            {stats.songsPerGenre.map((genre) => (
+              <ListItem key={genre._id}><span>{genre._id}</span><strong>{genre.count}</strong></ListItem>
+            ))}
+          </List>
+        </Panel>
 
-      <Panel>
-        <h3>Top artists</h3>
-        <List>
-          {stats.artistStats.map((artist) => (
-            <ListItem key={artist.artist}>
-              <span>{artist.artist}</span>
-              <strong>{artist.songCount}</strong>
-            </ListItem>
-          ))}
-        </List>
-      </Panel>
+        <Panel>
+          <h3>Artist Statistics</h3>
+          <List>
+            {stats.artistStats.map((artist) => (
+              <ListItem key={artist.artist}>
+                <span>{artist.artist}</span>
+                <strong>{artist.songCount} songs / {artist.albumCount} albums</strong>
+              </ListItem>
+            ))}
+          </List>
+        </Panel>
+
+        <Panel>
+          <h3>Songs by Album</h3>
+          <List>
+            {stats.songsPerAlbum.map((album) => (
+              <ListItem key={`${album._id.artist}-${album._id.album}`}>
+                <span>{album._id.album}</span><strong>{album.count}</strong>
+              </ListItem>
+            ))}
+          </List>
+        </Panel>
+      </DetailGrid>
     </Section>
   );
 };

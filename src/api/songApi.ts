@@ -3,7 +3,6 @@ import type { Song, SongFormData, Statistics } from '../features/songs/types';
 
 const apiBaseUrl =
   import.meta.env.VITE_API_URL ||
-  import.meta.env.REACT_APP_API_URL ||
   'https://song-manager-backend-2.onrender.com/api/songs';
 
 const API = axios.create({

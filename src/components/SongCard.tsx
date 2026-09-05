@@ -9,7 +9,6 @@ type SongCardProps = {
 };
 
 const Card = styled.article({
-  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
@@ -20,18 +19,7 @@ const Card = styled.article({
   background: 'linear-gradient(145deg, rgba(31, 41, 67, 0.98), rgba(22, 32, 55, 0.98) 55%, rgba(35, 48, 77, 0.98))',
   border: '1px solid rgba(125, 211, 252, 0.22)',
   boxShadow: '0 14px 32px rgba(15, 23, 42, 0.28)',
-  overflow: 'hidden',
   transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
-  '&::after': {
-    content: '"♫"',
-    position: 'absolute',
-    right: '1rem',
-    bottom: '-0.55rem',
-    color: 'rgba(125, 211, 252, 0.1)',
-    fontSize: '5rem',
-    lineHeight: 1,
-    pointerEvents: 'none',
-  },
   '&:hover': {
     transform: 'translateY(-4px)',
     borderColor: 'rgba(125, 211, 252, 0.58)',
