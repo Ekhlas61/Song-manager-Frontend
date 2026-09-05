@@ -5,7 +5,7 @@ import type { Song } from '../features/songs/types';
 type SongCardProps = {
   song: Song;
   onEdit: (song: Song) => void;
-  onDelete: (id: string) => void;
+  onDelete: (song: Song) => void;
 };
 
 const Card = styled.article({
@@ -186,7 +186,7 @@ const SongCard = ({ song, onEdit, onDelete }: SongCardProps) => (
       <Button type="button" variant="secondary" onClick={() => onEdit(song)}>
         <FiEdit2 aria-hidden="true" /> Edit
       </Button>
-      <Button type="button" variant="danger" onClick={() => onDelete(song._id)}>
+      <Button type="button" variant="danger" onClick={() => onDelete(song)}>
         <FiTrash2 aria-hidden="true" /> Delete
       </Button>
     </Actions>

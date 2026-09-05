@@ -14,6 +14,7 @@ import {
 } from '../features/songs/songSlice';
 import type { AppDispatch, RootState } from '../store';
 import FilterBar from './FilterBar';
+import DeleteConfirmation from './DeleteConfirmation';
 import SongForm from './SongForm';
 import SongList from './SongList';
 import Statistics from './Statistics';
@@ -73,6 +74,7 @@ const Layout = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { songs, stats, loading, error, filter } = useSelector((state: RootState) => state.songs);
   const [editingSong, setEditingSong] = useState<Song | null>(null);
+    const [deletingSong, setDeletingSong] = useState<Song | null>(null);
   const songFormRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -101,6 +103,11 @@ const Layout = () => {
 
   const handleClearFilters = () => dispatch(setFilter({ genre: '', search: '' }));
 
+  const handleConfirmDelete = (id: string) => {
+    dispatch(deleteSongRequest(id));
+    setDeletingSong(null);
+  };
+
   return (
     <AppShell>
       <Container>
@@ -121,7 +128,7 @@ const Layout = () => {
 
         <Section>
           <SectionHeading><SectionTitle>Your Music Library</SectionTitle><SectionMeta>{songs.length} {songs.length === 1 ? 'song' : 'songs'}</SectionMeta></SectionHeading>
-          <SongList songs={songs} loading={loading} error={error} onEdit={handleEditSong} onDelete={(id) => dispatch(deleteSongRequest(id))} />
+          <SongList songs={songs} loading={loading} error={error} onEdit={handleEditSong} onDelete={setDeletingSong} />
         </Section>
 
         <Section>
@@ -138,6 +145,9 @@ const Layout = () => {
             isEditing={Boolean(editingSong)} onSubmit={handleFormSubmit} onCancel={() => setEditingSong(null)} />
         </Panel>
       </Container>
+      {deletingSong ? (
+        <DeleteConfirmation song={deletingSong} onCancel={() => setDeletingSong(null)} onConfirm={handleConfirmDelete} />
+      ) : null}
     </AppShell>
   );
 };

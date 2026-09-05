@@ -9,7 +9,7 @@ type SongListProps = {
   loading: boolean;
   error: string | null;
   onEdit: (song: Song) => void;
-  onDelete: (id: string) => void;
+  onDelete: (song: Song) => void;
 };
 
 const Section = styled.section({
